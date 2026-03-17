@@ -1,9 +1,13 @@
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from rag_utils import load_template
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# Works for both local + cloud
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, max_tokens=2000)
 
