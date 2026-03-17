@@ -1,0 +1,9 @@
+User Story:
+As a [type of user], I want [feature] so that [benefit].
+
+Acceptance Criteria:
+- [Condition 1]
+- [Condition 2]
+- [Condition 3]
+
+Priority: [High / Medium / Low]

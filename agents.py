@@ -1,58 +1,51 @@
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
+from rag_utils import load_template
 from dotenv import load_dotenv
 
 load_dotenv()
 
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, max_tokens=2000)
 
-# -----------------------------
 # Business Analyst Agent
-# -----------------------------
-ba_prompt = ChatPromptTemplate.from_template("""
-You are a Business Analyst.
-
-Convert the requirement into user stories.
-
-Requirement:
-{requirement}
-
-Format:
-User Story
-Acceptance Criteria
-Priority
-""")
-
 def business_analyst(requirement):
-    chain = ba_prompt | llm
-    return chain.invoke({"requirement": requirement}).content
 
+    template = load_template("user_story.txt")
 
-# -----------------------------
+    prompt = f"""
+    You are a Business Analyst.
+
+    Use the following template:
+
+    {template}
+
+    Fill it based on this requirement:
+
+    {requirement}
+    """
+
+    return llm.invoke(prompt).content
+
 # Design Agent
-# -----------------------------
-design_prompt = ChatPromptTemplate.from_template("""
-You are a software architect.
-
-Create a system design from the following user stories.
-
-User Stories:
-{stories}
-
-Output:
-Architecture
-Components
-Database Schema
-""")
-
 def design_agent(stories):
-    chain = design_prompt | llm
-    return chain.invoke({"stories": stories}).content
 
+    template = load_template("design.txt")
 
-# -----------------------------
+    prompt = f"""
+    You are a Software Architect.
+
+    Use this template:
+
+    {template}
+
+    Based on user stories:
+
+    {stories}
+    """
+
+    return llm.invoke(prompt).content
+
 # Developer Agent
-# -----------------------------
 dev_prompt = ChatPromptTemplate.from_template("""
 You are a senior Python developer.
 
@@ -68,32 +61,26 @@ def developer_agent(design):
     chain = dev_prompt | llm
     return chain.invoke({"design": design}).content
 
-
-# -----------------------------
 # Testing Agent
-# -----------------------------
-test_prompt = ChatPromptTemplate.from_template("""
-You are a QA tester.
-
-Generate test cases for the following code.
-
-Code:
-{code}
-
-Format:
-Test Case
-Input
-Expected Output
-""")
-
 def testing_agent(code):
-    chain = test_prompt | llm
-    return chain.invoke({"code": code}).content
 
+    template = load_template("test_case.txt")
 
-# -----------------------------
+    prompt = f"""
+    You are a QA Tester.
+
+    Use this template:
+
+    {template}
+
+    Generate test cases for:
+
+    {code}
+    """
+
+    return llm.invoke(prompt).content
+
 # Project Lead
-# -----------------------------
 def project_lead(requirement, status_callback=None):
 
     if status_callback:
