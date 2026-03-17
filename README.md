@@ -1,62 +1,102 @@
 # 🤖 SoftSim AI
 
-### An AI-Powered Virtual Development Pod
+### An AI-Powered Virtual Development Pod with RAG-Enhanced Multi-Agent System
 
 SoftSim AI is a multi-agent AI system that simulates a real-world software development team.
-It automates the entire software development lifecycle — from requirement analysis to code generation and testing — using Large Language Models (LLMs).
+It automates the entire Software Development Lifecycle (SDLC) — from requirement analysis to code generation and testing — using Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG).
 
 ---
 
 ## 🚀 Features
 
 * 🧑‍💼 **Business Analyst Agent**
-  Converts high-level requirements into structured user stories
+  Converts high-level requirements into structured user stories using RAG templates
 
 * 🏗️ **Design Agent**
-  Generates system architecture and design documents
+  Generates system architecture and design documents using predefined templates
 
 * 👨‍💻 **Developer Agent**
-  Writes clean Python code based on design
+  Writes clean Python code based on generated design
 
 * 🧪 **Testing Agent**
-  Creates test cases for generated code
+  Creates structured test cases using RAG-based templates
 
 * 🧑‍✈️ **Project Lead Agent**
-  Orchestrates the entire workflow and tracks progress
+  Orchestrates the complete workflow across all agents
 
 * 📊 **Live Progress Updates**
-  Real-time status updates in the UI during execution
+  Real-time execution tracking in the UI
 
 * 🖥️ **Interactive Dashboard**
-  Built using Streamlit for easy interaction
+  Built using Streamlit
+
+* 🧠 **RAG-based Template Retrieval**
+  Dynamically loads structured templates for consistent outputs
 
 ---
 
-## 🧠 Architecture
+## 🧠 System Architecture
+
+### 🔁 Workflow
 
 ```
 User Requirement
         ↓
-Project Lead Agent
+Project Lead Agent (Orchestrator)
         ↓
 Business Analyst → User Stories
         ↓
 Design Agent → System Design
         ↓
-Developer Agent → Code
+Developer Agent → Python Code
         ↓
 Testing Agent → Test Cases
 ```
 
 ---
 
+## 🧩 RAG Integration (Template-Based Retrieval)
+
+SoftSim AI uses a lightweight Retrieval-Augmented Generation (RAG) approach.
+
+Instead of generating outputs blindly, agents retrieve structured templates and fill them using LLMs.
+
+### 🔍 How it Works:
+
+* Templates are stored locally:
+
+  * `user_story.txt`
+  * `design.txt`
+  * `test_case.txt`
+
+* Templates are dynamically loaded using:
+
+```python
+load_template(template_name)
+```
+
+* Each agent uses retrieved templates to ensure:
+
+  * Structured output
+  * Consistency
+  * Better controllability
+
+👉 Example:
+
+* Business Analyst → retrieves *user story template*
+* Design Agent → retrieves *architecture template*
+* Testing Agent → retrieves *test case template*
+
+---
+
 ## 🛠️ Tech Stack
 
-* Python
-* LangChain
-* Groq LLM API (Llama 3)
-* Streamlit
-* python-dotenv
+* **Frontend:** Streamlit
+* **Backend:** Python
+* **LLM Framework:** LangChain
+* **LLM API:** Groq (LLaMA 3)
+* **RAG Layer:** File-based template retrieval
+* **Environment Management:** python-dotenv
 
 ---
 
@@ -65,10 +105,16 @@ Testing Agent → Test Cases
 ```
 SoftSim-AI/
 │
-├── app.py          # Streamlit UI
-├── agents.py       # AI agents & workflow
+├── app.py               # Streamlit UI
+├── agents.py            # AI agents & orchestration
+├── rag_utils.py         # Template retrieval (RAG)
+├── templates/
+│   ├── user_story.txt
+│   ├── design.txt
+│   └── test_case.txt
+│
 ├── requirements.txt
-├── .env            # API keys (not included)
+├── .env
 └── .gitignore
 ```
 
@@ -93,7 +139,7 @@ pip install -r requirements.txt
 
 ---
 
-### 3. Add your API key
+### 3. Add API Key
 
 Create a `.env` file:
 
@@ -103,7 +149,7 @@ GROQ_API_KEY=your_api_key_here
 
 ---
 
-### 4. Run the application
+### 4. Run the Application
 
 ```bash
 streamlit run app.py
@@ -124,61 +170,77 @@ write posts, and comment on posts.
 
 The system generates:
 
-* User Stories
-* System Design
-* Python Code
-* Test Cases
+* 📋 User Stories
+* 🏗️ System Design
+* 💻 Python Code
+* 🧪 Test Cases
+
+---
+
+## 🔄 Agent Workflow & Orchestration
+
+The **Project Lead Agent** manages execution flow:
+
+1. Calls Business Analyst → generates user stories
+2. Passes output to Design Agent
+3. Sends design to Developer Agent
+4. Sends code to Testing Agent
+
+Each step is executed sequentially with status updates in the UI.
 
 ---
 
 ## 🧩 Code Highlights
 
-* Multi-agent architecture implemented using LangChain
-* Central orchestration via `project_lead()` 
-* Live UI updates using Streamlit status callbacks 
+* Multi-agent orchestration using LangChain
+* Template-based RAG system for structured generation
+* Modular agent design
+* Real-time UI updates using Streamlit
 
 ---
 
 ## 🎯 Key Concepts Demonstrated
 
 * Multi-Agent AI Systems
+* Retrieval-Augmented Generation (RAG)
 * Prompt Engineering
 * LLM Orchestration
 * Software Development Lifecycle Automation
-* Real-time UI feedback
+* Human workflow simulation using AI
 
 ---
 
 ## 🔒 Security Note
 
-* API keys are stored in `.env` and are **not committed** to the repository
-* `.gitignore` is used to exclude sensitive files
+* API keys stored securely using `.env`
+* `.gitignore` prevents exposure of sensitive data
+
+---
+
+## 🚀 Future Improvements
+
+* Replace file-based RAG with vector database (FAISS / Chroma)
+* Add code execution & validation
+* Add agent memory and chat history
+* Integrate GitHub for version control simulation
+* Enable parallel agent execution
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **MIT License**
 
 ---
 
 ## 🙌 Acknowledgements
 
-* Groq for free LLM API
-* LangChain for agent orchestration
-* Streamlit for UI framework
+* Groq for LLM API
+* LangChain for orchestration
+* Streamlit for UI
 
 ---
 
-## 📌 Future Improvements
+## ⭐ Support
 
-* Add RAG for template retrieval
-* Implement code execution & validation
-* Add agent memory and chat logs
-* Integrate GitHub for version control simulation
-
----
-
-## ⭐ If you like this project
-
-Give it a star ⭐ on GitHub!
+If you like this project, give it a star ⭐ on GitHub!
