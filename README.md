@@ -2,42 +2,42 @@
 
 ### An AI-Powered Virtual Development Pod with RAG-Enhanced Multi-Agent System
 
-SoftSim AI is a multi-agent AI system that simulates a real-world software development team.
+**SoftSim AI** is a multi-agent AI system that simulates a real-world software development team.
 It automates the entire Software Development Lifecycle (SDLC) — from requirement analysis to code generation and testing — using Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG).
 
 ---
 
 ## 🚀 Features
 
-* 🧑‍💼 **Business Analyst Agent**
+* **Business Analyst Agent**:
   Converts high-level requirements into structured user stories using RAG templates
 
-* 🏗️ **Design Agent**
+* **Design Agent**:
   Generates system architecture and design documents using predefined templates
 
-* 👨‍💻 **Developer Agent**
+* **Developer Agent**:
   Writes clean Python code based on generated design
 
-* 🧪 **Testing Agent**
+* **Testing Agent**:
   Creates structured test cases using RAG-based templates
 
-* 🧑‍✈️ **Project Lead Agent**
+* **Project Lead Agent**:
   Orchestrates the complete workflow across all agents
 
-* 📊 **Live Progress Updates**
+* **Live Progress Updates**:
   Real-time execution tracking in the UI
 
-* 🖥️ **Interactive Dashboard**
+* **Interactive Dashboard**:
   Built using Streamlit
 
-* 🧠 **RAG-based Template Retrieval**
+* **RAG-based Template Retrieval**:
   Dynamically loads structured templates for consistent outputs
 
 ---
 
 ## 🧠 System Architecture
 
-### 🔁 Workflow
+### Workflow
 
 ```
 User Requirement
@@ -81,7 +81,7 @@ load_template(template_name)
   * Consistency
   * Better controllability
 
-👉 Example:
+#### Example:
 
 * Business Analyst → retrieves *user story template*
 * Design Agent → retrieves *architecture template*
@@ -243,4 +243,4 @@ This project is licensed under the **MIT License**
 
 ## ⭐ Support
 
-If you like this project, give it a star ⭐ on GitHub!
+If you like this project, give it a star⭐ on GitHub!

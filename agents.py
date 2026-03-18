@@ -9,7 +9,7 @@ load_dotenv()
 # Works for both local + cloud
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, max_tokens=2000)
+llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, max_tokens=1000)
 
 # Business Analyst Agent
 def business_analyst(requirement):
@@ -103,12 +103,9 @@ def project_lead(requirement, status_callback=None):
     code = developer_agent(design)
 
     if status_callback:
-        status_callback("🧪 Tester generating test cases...")
+        status_callback("🕵️ Tester generating test cases...")
 
     tests = testing_agent(code)
-
-    if status_callback:
-        status_callback("✅ Development completed!")
 
     return {
         "stories": stories,
