@@ -9,7 +9,7 @@ load_dotenv()
 # Works for both local + cloud
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, max_tokens=1000)
+llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, max_tokens=3000)
 
 # Business Analyst Agent
 def business_analyst(requirement):
